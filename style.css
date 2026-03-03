@@ -1,0 +1,298 @@
+/* === RESET Y BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* === LAYOUT PRINCIPAL === */
+#app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* === PANEL IZQUIERDO === */
+#panel-control {
+  width: 35%;
+  background: #111111;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  border-right: 1px solid #222222;
+  z-index: 10;
+}
+
+#logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #00ff88;
+  letter-spacing: 1px;
+}
+
+#prompt-form, #knobs-section {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+#prompt-form h2, #knobs-section h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #00ff88;
+  margin-bottom: 8px;
+}
+
+#prompt-form p, #knobs-section p {
+  font-size: 13px;
+  color: #555555;
+}
+
+/* === BOTONES === */
+#btn-gallery, #btn-play {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#btn-gallery {
+  background: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+
+#btn-gallery:hover {
+  background: #2a2a2a;
+  border-color: #00ff88;
+}
+
+#btn-play {
+  background: #00ff88;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+#btn-play:hover {
+  background: #00cc6a;
+  transform: scale(1.02);
+}
+
+/* === PANEL DERECHO === */
+#panel-stage {
+  width: 65%;
+  position: relative;
+  background: #000000;
+}
+
+#webcam {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* efecto espejo */
+}
+
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  transform: scaleX(-1); /* efecto espejo */
+}
+
+#stage-label {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 20;
+  background: rgba(0,0,0,0.6);
+  color: #00ff88;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  backdrop-filter: blur(4px);
+}
+
+/* === DRAWER DE GALERÍA === */
+#gallery-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px; /* oculto por defecto */
+  width: 300px;
+  height: 100vh;
+  background: #161616;
+  border-left: 1px solid #2a2a2a;
+  padding: 28px 20px;
+  z-index: 100;
+  transition: right 0.3s ease;
+}
+
+#gallery-drawer.open {
+  right: 0; /* visible al hacer click */
+}
+
+#gallery-drawer h3 {
+  color: #00ff88;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+/* === PROMPT FORM === */
+.prompt-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.prompt-field label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+}
+.prompt-field select {
+  background: #222;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.prompt-field select:focus {
+  outline: none;
+  border-color: #00ff88;
+}
+#btn-apply-prompt {
+  width: 100%;
+  padding: 10px;
+  background: #00ff88;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+#btn-apply-prompt:hover { background: #00cc6a; }
+
+/* === DRAWER === */
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+#btn-close-drawer {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+}
+.drawer-subtitle {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 16px;
+}
+.sound-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.sound-card {
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+.sound-card.active  { border-color: #00ff88; background: #0a2a1a; }
+.sound-card.loading { opacity: 0.5; }
+.sound-name { font-size: 13px; }
+.btn-load {
+  background: #2a2a2a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.btn-load:hover { background: #00ff88; color: #000; }
+
+/* === MAPPING === */
+.mapping-section {
+  border-top: 1px solid #222;
+  padding-top: 16px;
+}
+.mapping-section h4 {
+  font-size: 12px;
+  color: #00ff88;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.mapping-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.mapping-row select {
+  background: #222;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 12px;
+  flex: 1;
+}
+#btn-add-mapping {
+  width: 100%;
+  padding: 8px;
+  background: #1e1e1e;
+  color: #00ff88;
+  border: 1px solid #00ff88;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+#btn-add-mapping:hover { background: #00ff88; color: #000; }
+.mapping-tag {
+  background: #1a2a1a;
+  border: 1px solid #00ff8833;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.remove-mapping {
+  color: #ff0066;
+  cursor: pointer;
+  font-weight: bold;
+}

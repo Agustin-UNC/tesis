@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Body Music</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+
+  <!-- Tone.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+</head>
+<body>
+  <div id="app">
+
+    <!-- PANEL IZQUIERDO: Controles -->
+    <div id="panel-control">
+      <h1 id="logo">🎵 Body Music</h1>
+
+      <div id="prompt-form">
+        <h2>Prompt Musical</h2>
+        <p>Configura tu composición aquí</p>
+      </div>
+
+      <div id="knobs-section">
+        <h2>Efectos</h2>
+        <p>Knobs aparecerán aquí</p>
+      </div>
+
+      <button id="btn-gallery">☰ Galería de Sonidos</button>
+      <button id="btn-play">▶ PLAY</button>
+    </div>
+
+    <!-- PANEL DERECHO: Escenario con cámara -->
+    <div id="panel-stage">
+      <video id="webcam" autoplay playsinline muted></video>
+      <canvas id="overlay"></canvas>
+      <div id="stage-label">📷 Cámara activa</div>
+    </div>
+
+    <!-- DRAWER lateral de sonidos -->
+    <div id="gallery-drawer">
+      <h3>🎸 Sonidos Disponibles</h3>
+      <p>Selecciona tu prompt primero</p>
+    </div>
+
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
